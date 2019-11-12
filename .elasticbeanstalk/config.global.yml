@@ -1,5 +1,5 @@
 global:
-  application_name: devops-test-2
+  application_name: devops-test
   branch: null
   default_ec2_keyname: null
   default_platform: Node.js
