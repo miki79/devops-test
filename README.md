@@ -23,7 +23,8 @@ After created the environment you can access the application via loadbalancer at
 Setup following variables:
 
 - ENVIRONMENT_NAME = [environment name] used during creation environment
-- TODO: add AWS credentials
+
+Set AWS permissions in CircleCI with a user that has "AWSElasticBeanstalkService" policy attached to it
 
 # Automatic deployment
 
