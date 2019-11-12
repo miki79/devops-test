@@ -10,9 +10,10 @@ This command is necessary to setup the basic environment to deploy the applicati
 
 After created the environment you can access the application via loadbalancer at the url http://[subdomain-name].eu-west-1.elasticbeanstalk.com 
 
-## Configure Github action
+## Configure CircleCI for auto-deployment
 Setup following variables:
-- environmentName = [environment name] used during creation environment
+- ENVIRONMENT_NAME = [environment name] used during creation environment
+- TODO: add AWS credentials
 
 # Automatic deployment
 Every time a new pull request is opened the application is tested and deployed to the environment http://[subdomain-name].eu-west-1.elasticbeanstalk.com
