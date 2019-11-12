@@ -1,12 +1,9 @@
 version: 2
 
-defaults: &defaults
-  docker:
-    - image: ruanzx/aws:alpine
-
 jobs:
   build:
-    <<: *defaults
+    docker:
+      - image: circleci/node:lts
     steps:
       - checkout
       - restore_cache:
@@ -25,12 +22,16 @@ jobs:
           paths:
             - node_modules
   deploy:
-    <<: *defaults
+    docker:
+      - image: ruanzx/aws:alpine
     steps:
       - checkout
       - run:
+          name: Setup environment
+          command: eb use $ENVIRONMENT_NAME
+      - run:
           name: Deploy
-          command: echo "TODO"
+          command: eb deploy
 
 workflows:
   version: 2
