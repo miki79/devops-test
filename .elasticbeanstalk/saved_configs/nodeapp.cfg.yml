@@ -2,8 +2,8 @@ Platform:
   PlatformArn: arn:aws:elasticbeanstalk:eu-west-1::platform/Node.js running on 64bit Amazon Linux/4.11.0
 OptionSettings:
   AWSEBAutoScalingGroup.aws:autoscaling:asg:
-    MinSize: '1'
-    MaxSize: '1'
+    MinSize: '2'
+    MaxSize: '2'
   aws:elasticbeanstalk:environment:
     ServiceRole: aws-elasticbeanstalk-service-role
     LoadBalancerType: application
