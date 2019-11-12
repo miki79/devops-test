@@ -1,0 +1,27 @@
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:eu-west-1::platform/Node.js running on 64bit Amazon Linux/4.11.0
+OptionSettings:
+  AWSEBAutoScalingGroup.aws:autoscaling:asg:
+    MinSize: '1'
+    MaxSize: '1'
+  aws:elasticbeanstalk:environment:
+    ServiceRole: aws-elasticbeanstalk-service-role
+    LoadBalancerType: application
+  AWSEBAutoScalingLaunchConfiguration.aws:ec2:vpc:
+    AssociatePublicIpAddress: true
+  aws:ec2:vpc:
+    Subnets: subnet-0cf0e3084af38a479,subnet-082feb34c5a267483,subnet-0283e1bc644649591
+    ELBSubnets: subnet-0cf0e3084af38a479,subnet-082feb34c5a267483,subnet-0283e1bc644649591
+  aws:elasticbeanstalk:healthreporting:system:
+    SystemType: enhanced
+  AWSEBLoadBalancerSecurityGroup.aws:ec2:vpc:
+    VPCId: vpc-0396e200ce69571a4
+  AWSEBV2LoadBalancerTargetGroup.aws:elasticbeanstalk:environment:process:default:
+    Port: '3000'
+  aws:autoscaling:launchconfiguration:
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+    InstanceType: t2.micro
+EnvironmentTier:
+  Type: Standard
+  Name: WebServer
+AWSConfigurationTemplateVersion: 1.1.0.0
