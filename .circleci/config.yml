@@ -1,19 +1,16 @@
 version: 2
 
-defaults: &defaults
-  docker:
-    - image: ruanzx/aws:alpine
-
 jobs:
   build:
-    <<: *defaults
+    docker:
+      - image: circleci/node:lts
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v2-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v2-dependencies-
       - run:
           name: Install npm
           command: npm install
@@ -21,20 +18,26 @@ jobs:
           name: Test
           command: npm test
       - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v2-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
   deploy:
-    <<: *defaults
+    docker:
+      - image: ruanzx/aws:alpine
     steps:
       - checkout
       - run:
+          name: Setup environment
+          command: eb use $ENVIRONMENT_NAME
+      - run:
           name: Deploy
-          command: echo "TODO"
+          command: eb deploy
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
-      - deploy
+      - deploy:
+          requires:
+            - build
